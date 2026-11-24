@@ -39,8 +39,8 @@ public abstract class Product {
     }
 
     public void setHarga(double harga) {
-        if (harga < 0) {
-            throw new IllegalArgumentException("Harga tidak boleh negatif: " + harga);
+        if (!Double.isFinite(harga) || harga < 0) {
+            throw new IllegalArgumentException("Harga harus berupa angka terbatas dan tidak boleh negatif: " + harga);
         }
         this.harga = harga;
     }
@@ -50,8 +50,8 @@ public abstract class Product {
     }
 
     public void setTarifAcuan(double tarifAcuan) {
-        if (tarifAcuan < 0) {
-            throw new IllegalArgumentException("Tarif acuan tidak boleh negatif: " + tarifAcuan);
+        if (!Double.isFinite(tarifAcuan) || tarifAcuan < 0) {
+            throw new IllegalArgumentException("Tarif acuan harus berupa angka terbatas dan tidak boleh negatif: " + tarifAcuan);
         }
         this.tarifAcuan = tarifAcuan;
     }
