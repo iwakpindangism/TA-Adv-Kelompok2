@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataProduk {
+    private DataProduk() {
+    }
     private static final TingkatKebutuhan E = TingkatKebutuhan.ESSENTIAL;
     private static final TingkatKebutuhan N = TingkatKebutuhan.NON_ESSENTIAL;
     private static final TingkatKebutuhan L = TingkatKebutuhan.LUXURY;

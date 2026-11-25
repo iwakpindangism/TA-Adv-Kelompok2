@@ -18,7 +18,7 @@ public class IncomeGroup {
         if (Double.isNaN(pendapatanMaksimum) || pendapatanMaksimum <= pendapatanMinimum) {
             throw new IllegalArgumentException("Pendapatan maksimum harus lebih besar dari minimum: " + pendapatanMaksimum);
         }
-        this.namaKelompok = namaKelompok;
+        this.namaKelompok = namaKelompok.trim();
         this.pendapatanMinimum = pendapatanMinimum;
         this.pendapatanMaksimum = pendapatanMaksimum;
     }

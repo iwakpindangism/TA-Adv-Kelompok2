@@ -18,11 +18,25 @@ public class HasilSimulasi implements Menampilkan {
     private final KategoriPrioritas prioritas;     // tambahan, untuk ditampilkan & riwayat
     private final String kelompokPendapatan;       // tambahan, untuk ditampilkan & riwayat
 
-    public HasilSimulasi(String namaProduk, double hargaSebelumPajak, double tarifAcuan,
-                         double pajakAcuan, double tarifSimulasi, double pajakSimulasi,
-                         double hargaSetelahSimulasi, KategoriPrioritas prioritas,
-                         String kelompokPendapatan) {
-        this.namaProduk = namaProduk;
+    HasilSimulasi(String namaProduk, double hargaSebelumPajak, double tarifAcuan,
+                  double pajakAcuan, double tarifSimulasi, double pajakSimulasi,
+                  double hargaSetelahSimulasi, KategoriPrioritas prioritas,
+                  String kelompokPendapatan) {
+        if (namaProduk == null || namaProduk.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nama produk tidak boleh kosong.");
+        }
+        if (!Double.isFinite(hargaSebelumPajak) || hargaSebelumPajak < 0
+                || !Double.isFinite(tarifAcuan) || tarifAcuan < 0 || tarifAcuan > 1
+                || !Double.isFinite(pajakAcuan) || pajakAcuan < 0
+                || !Double.isFinite(tarifSimulasi) || tarifSimulasi < 0 || tarifSimulasi > tarifAcuan
+                || !Double.isFinite(pajakSimulasi) || pajakSimulasi < 0
+                || !Double.isFinite(hargaSetelahSimulasi) || hargaSetelahSimulasi < hargaSebelumPajak) {
+            throw new IllegalArgumentException("Nilai hasil simulasi tidak valid.");
+        }
+        if (prioritas == null || kelompokPendapatan == null || kelompokPendapatan.trim().isEmpty()) {
+            throw new IllegalArgumentException("Prioritas dan kelompok pendapatan wajib diisi.");
+        }
+        this.namaProduk = namaProduk.trim();
         this.hargaSebelumPajak = hargaSebelumPajak;
         this.tarifAcuan = tarifAcuan;
         this.pajakAcuan = pajakAcuan;
@@ -30,7 +44,7 @@ public class HasilSimulasi implements Menampilkan {
         this.pajakSimulasi = pajakSimulasi;
         this.hargaSetelahSimulasi = hargaSetelahSimulasi;
         this.prioritas = prioritas;
-        this.kelompokPendapatan = kelompokPendapatan;
+        this.kelompokPendapatan = kelompokPendapatan.trim();
     }
 
     // Ringkasan satu baris, dipakai pada daftar riwayat.

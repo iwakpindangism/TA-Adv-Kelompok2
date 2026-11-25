@@ -33,6 +33,9 @@ public class TaxSimulator {
             throw new IllegalArgumentException("Kategori prioritas tidak boleh kosong.");
         }
 
+        // Validasi kelompok sebelum mengubah state agar simulasi gagal tetap konsisten.
+        indeksKelompok(kelompok);
+
         // Polymorphism: produk diterima sebagai tipe Product, apa pun kategorinya.
         this.hargaProduk = produk.getHarga();
         this.tarifAcuan = produk.getTarifAcuan();

@@ -8,9 +8,9 @@ public abstract class Product {
     private int skorUrgensi;            // 1 - 5
     private TingkatKebutuhan tingkatKebutuhan; //ambil dari TingkatKebutuhan.java (enum)
 
-    public Product(String namaProduk, double harga, double tarifAcuan,
-                   int frekuensiPenggunaan, int skorUrgensi,
-                   TingkatKebutuhan tingkatKebutuhan) {
+    protected Product(String namaProduk, double harga, double tarifAcuan,
+                      int frekuensiPenggunaan, int skorUrgensi,
+                      TingkatKebutuhan tingkatKebutuhan) {
         // memakai setter supaya validasi ikut berlaku saat objek dibuat
         setNamaProduk(namaProduk);
         setHarga(harga);
@@ -27,18 +27,18 @@ public abstract class Product {
         return namaProduk;
     }
 
-    public void setNamaProduk(String namaProduk) {
+    public final void setNamaProduk(String namaProduk) {
         if (namaProduk == null || namaProduk.trim().isEmpty()) {
             throw new IllegalArgumentException("Nama produk tidak boleh kosong.");
         }
-        this.namaProduk = namaProduk;
+        this.namaProduk = namaProduk.trim();
     }
 
     public double getHarga() {
         return harga;
     }
 
-    public void setHarga(double harga) {
+    public final void setHarga(double harga) {
         if (!Double.isFinite(harga) || harga < 0) {
             throw new IllegalArgumentException("Harga harus berupa angka terbatas dan tidak boleh negatif: " + harga);
         }
@@ -49,9 +49,9 @@ public abstract class Product {
         return tarifAcuan;
     }
 
-    public void setTarifAcuan(double tarifAcuan) {
-        if (!Double.isFinite(tarifAcuan) || tarifAcuan < 0) {
-            throw new IllegalArgumentException("Tarif acuan harus berupa angka terbatas dan tidak boleh negatif: " + tarifAcuan);
+    public final void setTarifAcuan(double tarifAcuan) {
+        if (!Double.isFinite(tarifAcuan) || tarifAcuan < 0 || tarifAcuan > 1) {
+            throw new IllegalArgumentException("Tarif acuan harus berada di antara 0 dan 1: " + tarifAcuan);
         }
         this.tarifAcuan = tarifAcuan;
     }
@@ -60,7 +60,7 @@ public abstract class Product {
         return frekuensiPenggunaan;
     }
 
-    public void setFrekuensiPenggunaan(int frekuensiPenggunaan) {
+    public final void setFrekuensiPenggunaan(int frekuensiPenggunaan) {
         if (frekuensiPenggunaan < 0) {
             throw new IllegalArgumentException("Frekuensi penggunaan tidak boleh negatif: " + frekuensiPenggunaan);
         }
@@ -71,7 +71,7 @@ public abstract class Product {
         return skorUrgensi;
     }
 
-    public void setSkorUrgensi(int skorUrgensi) {
+    public final void setSkorUrgensi(int skorUrgensi) {
         if (skorUrgensi < 1 || skorUrgensi > 5) {
             throw new IllegalArgumentException("Skor urgensi harus 1-5, diberikan: " + skorUrgensi);
         }
@@ -82,7 +82,7 @@ public abstract class Product {
         return tingkatKebutuhan;
     }
 
-    public void setTingkatKebutuhan(TingkatKebutuhan tingkatKebutuhan) {
+    public final void setTingkatKebutuhan(TingkatKebutuhan tingkatKebutuhan) {
         if (tingkatKebutuhan == null) {
             throw new IllegalArgumentException("Tingkat kebutuhan tidak boleh null.");
         }

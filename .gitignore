@@ -1,1 +1,6 @@
 .history/
+
+# Java build artifacts
+out/
+build/
+*.class

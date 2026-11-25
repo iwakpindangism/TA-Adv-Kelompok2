@@ -5,6 +5,7 @@ import evaluasi.PriorityEvaluator;
 import produk.DataProduk;
 import produk.Product;
 import simulasi.HasilSimulasi;
+import simulasi.Menampilkan;
 import simulasi.SimulationHistory;
 import simulasi.TaxSimulator;
 
@@ -17,6 +18,9 @@ import java.util.Set;
 // Program utama TaxFair (Tax Fairness Simulator).
 // Catatan: exception handling dipusatkan di bacaAngka() dan blok try-catch pada alur simulasi.
 public class Main {
+
+    private Main() {
+    }
 
     private static final Scanner INPUT = new Scanner(System.in);
     private static final List<Product> KATALOG = DataProduk.getKatalog();
@@ -161,7 +165,8 @@ public class Main {
         System.out.println();
         System.out.printf("Skor prioritas produk: %.1f (%s)%n",
                 evaluator.getSkorPrioritas(), evaluator.getKategoriPrioritas().getLabel());
-        hasil.tampilkan();
+        Menampilkan tampilanHasil = hasil;
+        tampilanHasil.tampilkan();
     }
 
     private static void menuRiwayat() {
